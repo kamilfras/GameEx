@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar left">
+            <div class="character-stats">
+                <h3>Character</h3>
+                <div class="stat">
+                    <div class="stat-label">Health</div>
+                    <div class="stat-bar health"></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">Mana</div>
+                    <div class="stat-bar mana"></div>
+                </div>
+            </div>
+            <div class="combat-bars">
+                <h3>Combat</h3>
+                <div class="stat">
+                    <div class="stat-label">Attack</div>
+                    <div class="stat-bar attack"></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">Defense</div>
+                    <div class="stat-bar defense"></div>
+                </div>
+            </div>
+        </div>
+        <div class="game-view">
+            <canvas id="gameCanvas" width="750" height="750"></canvas>
+            <div class="arrow-indicators">
+                <div class="arrow-indicator up"></div>
+                <div class="arrow-indicator left"></div>
+                <div class="arrow-indicator down"></div>
+                <div class="arrow-indicator right"></div>
+            </div>
+        </div>
+        <div class="sidebar right">
+            <div class="inventory">
+                <h3>Inventory</h3>
+                <ul>
+                    <li>Backpack 1</li>
+                    <li>Backpack 2</li>
+                    <li>Backpack 3</li>
+                </ul>
+            </div>
+            <div class="equipment">
+                <h3>Equipment</h3>
+                <ul>
+                    <li>Helmet</li>
+                    <li>Armor</li>
+                    <li>Boots</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
