@@ -13,6 +13,8 @@ const ship = {
     thrust: false
 };
 
+const rockets = [];
+
 function drawShip() {
     ctx.save();
     ctx.translate(ship.x, ship.y);
@@ -20,9 +22,9 @@ function drawShip() {
 
     // Draw the ship
     ctx.beginPath();
-    ctx.moveTo(10, 0);
-    ctx.lineTo(-10, -7);
-    ctx.lineTo(-10, 7);
+    ctx.moveTo(20, 0);
+    ctx.lineTo(-20, -14);
+    ctx.lineTo(-20, 14);
     ctx.closePath();
     ctx.fillStyle = 'white';
     ctx.fill();
@@ -30,15 +32,26 @@ function drawShip() {
     // Draw the fire when thrust is active
     if (ship.thrust) {
         ctx.fillStyle = 'orange';
-        ctx.fillRect(-14, -3, 4, 2);
-        ctx.fillRect(-14, 1, 4, 2);
+        ctx.fillRect(-28, -6, 8, 4);
+        ctx.fillRect(-28, 2, 8, 4);
 
         ctx.fillStyle = 'red';
-        ctx.fillRect(-16, -2, 2, 1);
-        ctx.fillRect(-16, 1, 2, 1);
+        ctx.fillRect(-32, -4, 4, 2);
+        ctx.fillRect(-32, 2, 4, 2);
     }
 
     ctx.restore();
+}
+
+function drawRockets() {
+    ctx.fillStyle = 'white';
+    rockets.forEach(rocket => {
+        ctx.save();
+        ctx.translate(rocket.x, rocket.y);
+        ctx.rotate(rocket.angle);
+        ctx.fillRect(-2, -1, 4, 2);
+        ctx.restore();
+    });
 }
 
 function updateShip() {
@@ -46,17 +59,32 @@ function updateShip() {
     ship.x += Math.cos(ship.angle) * ship.speed;
     ship.y += Math.sin(ship.angle) * ship.speed + ship.gravity;
 
-    if (ship.y > canvas.height - 10) {
-        ship.y = canvas.height - 10;
+    if (ship.y > canvas.height - 20) {
+        ship.y = canvas.height - 20;
         ship.speed = 0;
     }
+}
+
+function updateRockets() {
+    rockets.forEach(rocket => {
+        rocket.x += Math.cos(rocket.angle) * rocket.speed;
+        rocket.y += Math.sin(rocket.angle) * rocket.speed;
+    });
+
+    rockets.forEach((rocket, index) => {
+        if (rocket.x < 0 || rocket.x > canvas.width || rocket.y < 0 || rocket.y > canvas.height) {
+            rockets.splice(index, 1);
+        }
+    });
 }
 
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     drawShip();
+    drawRockets();
     updateShip();
+    updateRockets();
 
     requestAnimationFrame(gameLoop);
 }
@@ -73,6 +101,13 @@ document.addEventListener('keydown', (e) => {
         ship.angle -= 0.3;
     } else if (e.code === 'ArrowRight') {
         ship.angle += 0.3;
+    } else if (e.code === 'Space') {
+        rockets.push({
+            x: ship.x + Math.cos(ship.angle) * 20,
+            y: ship.y + Math.sin(ship.angle) * 20,
+            angle: ship.angle,
+            speed: 5
+        });
     }
 });
 
@@ -83,5 +118,11 @@ document.addEventListener('keyup', (e) => {
 });
 
 gravitySelect.addEventListener('change', (e) => {
-    ship.gravity = parseFloat(e.target.value);
+    if (e.target.value === 'zero') {
+        ship.gravity = 0;
+    } else if (e.target.value === 'moon') {
+        ship.gravity = 0.16;
+    } else if (e.target.value === 'earth') {
+        ship.gravity = 0.98;
+    }
 });
