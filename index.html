@@ -2,34 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FFight Game</title>
+    <title>FFight</title>
     <style>
-        canvas {
-            display: block;
-            margin: 0 auto;
+        body {
+            margin: 0;
             background-color: black;
         }
-        #settings {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: white;
-            padding: 10px;
-            border: 1px solid black;
+
+        canvas {
+            display: block;
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="800" height="600"></canvas>
-    <div id="settings">
-        <label for="gravity">Gravity level:</label>
-        <select id="gravity">
-            <option value="0.01">Low</option>
-            <option value="0.05">Medium</option>
-            <option value="0.1">High</option>
-        </select>
-    </div>
+    <select id="gravity">
+        <option value="zero">Zero</option>
+        <option value="moon">Moon</option>
+        <option value="earth">Earth</option>
+    </select>
     <script src="ffight.js"></script>
 </body>
 </html>
