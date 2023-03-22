@@ -13,17 +13,31 @@
 
         canvas {
             display: block;
+            margin: 0 auto;
+            background-color: black;
+        }
+
+        #settings {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid black;
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="800" height="600"></canvas>
-    <label for="gravity">Gravity: </label>
-    <select id="gravity">
-        <option value="0">Zero</option>
-        <option value="0.16">Moon</option>
-        <option value="0.98">Earth</option>
-    </select>
+    <div id="settings">
+        <h3>Settings</h3>
+        <label for="gravity">Gravity: </label>
+        <select id="gravity">
+            <option value="0">Zero</option>
+            <option value="0.16">Moon</option>
+            <option value="0.98">Earth</option>
+        </select>
+    </div>
     <script src="ffight.js"></script>
 </body>
 </html>
