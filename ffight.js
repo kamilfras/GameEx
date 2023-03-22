@@ -7,7 +7,7 @@ const ship = {
     y: 50,
     angle: Math.PI / 2,
     speed: 0,
-    acceleration: 0.05,
+    acceleration: 0.20,
     friction: 0.99,
     gravity: parseFloat(gravitySelect.value),
     thrust: false
@@ -70,9 +70,9 @@ document.addEventListener('keydown', (e) => {
     } else if (e.code === 'ArrowDown') {
         ship.speed = 0;
     } else if (e.code === 'ArrowLeft') {
-        ship.angle -= 0.1;
+        ship.angle -= 0.3;
     } else if (e.code === 'ArrowRight') {
-        ship.angle += 0.1;
+        ship.angle += 0.3;
     }
 });
 
