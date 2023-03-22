@@ -9,13 +9,16 @@ const ship = {
     speed: 0,
     acceleration: 0.05,
     friction: 0.99,
-    gravity: parseFloat(gravitySelect.value)
+    gravity: parseFloat(gravitySelect.value),
+    thrust: false
 };
 
 function drawShip() {
     ctx.save();
     ctx.translate(ship.x, ship.y);
     ctx.rotate(ship.angle);
+
+    // Draw the ship
     ctx.beginPath();
     ctx.moveTo(10, 0);
     ctx.lineTo(-10, -7);
@@ -23,6 +26,18 @@ function drawShip() {
     ctx.closePath();
     ctx.fillStyle = 'white';
     ctx.fill();
+
+    // Draw the fire when thrust is active
+    if (ship.thrust) {
+        ctx.fillStyle = 'orange';
+        ctx.fillRect(-14, -3, 4, 2);
+        ctx.fillRect(-14, 1, 4, 2);
+
+        ctx.fillStyle = 'red';
+        ctx.fillRect(-16, -2, 2, 1);
+        ctx.fillRect(-16, 1, 2, 1);
+    }
+
     ctx.restore();
 }
 
@@ -51,12 +66,19 @@ gameLoop();
 document.addEventListener('keydown', (e) => {
     if (e.code === 'ArrowUp') {
         ship.speed += ship.acceleration;
+        ship.thrust = true;
     } else if (e.code === 'ArrowDown') {
         ship.speed = 0;
     } else if (e.code === 'ArrowLeft') {
         ship.angle -= 0.1;
     } else if (e.code === 'ArrowRight') {
         ship.angle += 0.1;
+    }
+});
+
+document.addEventListener('keyup', (e) => {
+    if (e.code === 'ArrowUp') {
+        ship.thrust = false;
     }
 });
 
