@@ -117,12 +117,8 @@ document.addEventListener('keyup', (e) => {
     }
 });
 
+
 gravitySelect.addEventListener('change', (e) => {
-    if (e.target.value === 'zero') {
-        ship.gravity = 0;
-    } else if (e.target.value === 'moon') {
-        ship.gravity = 0.16;
-    } else if (e.target.value === 'earth') {
-        ship.gravity = 0.98;
-    }
+    const value = parseFloat(e.target.value);
+    ship.gravity = value;
 });
