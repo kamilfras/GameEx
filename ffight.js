@@ -3,8 +3,8 @@ const ctx = canvas.getContext('2d');
 
 const ship = {
     x: canvas.width / 2,
-    y: canvas.height / 2,
-    angle: 0,
+    y: 50,
+    angle: Math.PI / 2,
     speed: 0,
     acceleration: 0.05,
     friction: 0.99
