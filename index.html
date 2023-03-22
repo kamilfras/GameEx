@@ -10,10 +10,26 @@
             margin: 0 auto;
             background-color: black;
         }
+        #settings {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="settings">
+        <label for="gravity">Gravity level:</label>
+        <select id="gravity">
+            <option value="0.01">Low</option>
+            <option value="0.05">Medium</option>
+            <option value="0.1">High</option>
+        </select>
+    </div>
     <script src="ffight.js"></script>
 </body>
 </html>
