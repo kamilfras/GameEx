@@ -1,5 +1,6 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
+const gravitySelect = document.getElementById('gravity');
 
 const ship = {
     x: canvas.width / 2,
@@ -7,7 +8,8 @@ const ship = {
     angle: Math.PI / 2,
     speed: 0,
     acceleration: 0.05,
-    friction: 0.99
+    friction: 0.99,
+    gravity: parseFloat(gravitySelect.value)
 };
 
 function drawShip() {
@@ -27,7 +29,7 @@ function drawShip() {
 function updateShip() {
     ship.speed *= ship.friction;
     ship.x += Math.cos(ship.angle) * ship.speed;
-    ship.y += Math.sin(ship.angle) * ship.speed;
+    ship.y += Math.sin(ship.angle) * ship.speed + ship.gravity;
 
     if (ship.y > canvas.height - 10) {
         ship.y = canvas.height - 10;
@@ -56,4 +58,8 @@ document.addEventListener('keydown', (e) => {
     } else if (e.code === 'ArrowRight') {
         ship.angle += 0.1;
     }
+});
+
+gravitySelect.addEventListener('change', (e) => {
+    ship.gravity = parseFloat(e.target.value);
 });
