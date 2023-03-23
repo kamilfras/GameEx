@@ -97,8 +97,8 @@ gameLoop();
 
 document.addEventListener('keydown', (e) => {
     if (e.code === 'ArrowUp') {
-        ship.horizontalSpeed -= Math.sin(ship.angle) * ship.acceleration;
-        ship.verticalSpeed -= Math.cos(ship.angle) * ship.acceleration;
+        ship.horizontalSpeed -= ship.acceleration;
+        ship.verticalSpeed -= ship.acceleration;
         ship.thrust = true;
     } else if (e.code === 'ArrowDown') {
         ship.horizontalSpeed = 0;
