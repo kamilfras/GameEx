@@ -2,6 +2,7 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const gravitySelect = document.getElementById('gravity');
 
+
 const ship = {
     x: canvas.width / 2,
     y: 50,
