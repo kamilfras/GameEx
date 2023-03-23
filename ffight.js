@@ -7,7 +7,8 @@ const ship = {
     x: canvas.width / 2,
     y: 50,
     angle: Math.PI / 2,
-    speed: 0,
+    horizontalSpeed: 0,
+    verticalSpeed: 0,
     acceleration: 0.20,
     friction: 0.99,
     gravity: parseFloat(gravitySelect.value),
@@ -55,14 +56,17 @@ function drawRockets() {
     });
 }
 
+
 function updateShip() {
-    ship.speed *= ship.friction;
-    ship.x += Math.cos(ship.angle) * ship.speed;
-    ship.y += Math.sin(ship.angle) * ship.speed + ship.gravity;
+    ship.horizontalSpeed *= ship.friction;
+    ship.verticalSpeed *= ship.friction;
+
+    ship.x += Math.cos(ship.angle) * ship.horizontalSpeed;
+    ship.y += Math.sin(ship.angle) * ship.verticalSpeed + ship.gravity;
 
     if (ship.y > canvas.height - 20) {
         ship.y = canvas.height - 20;
-        ship.speed = 0;
+        ship.verticalSpeed = 0;
     }
 }
 
@@ -92,12 +96,15 @@ function gameLoop() {
 
 gameLoop();
 
+
 document.addEventListener('keydown', (e) => {
     if (e.code === 'ArrowUp') {
-        ship.speed += ship.acceleration;
+        ship.horizontalSpeed += Math.cos(ship.angle) * ship.acceleration;
+        ship.verticalSpeed += Math.sin(ship.angle) * ship.acceleration;
         ship.thrust = true;
     } else if (e.code === 'ArrowDown') {
-        ship.speed = 0;
+        ship.horizontalSpeed = 0;
+        ship.verticalSpeed = 0;
     } else if (e.code === 'ArrowLeft') {
         ship.angle -= 0.3;
     } else if (e.code === 'ArrowRight') {
