@@ -56,18 +56,6 @@ function drawRockets() {
     });
 }
 
-const ship = {
-    x: canvas.width / 2,
-    y: 50,
-    angle: Math.PI / 2,
-    horizontalSpeed: 0,
-    verticalSpeed: 0,
-    acceleration: 0.20,
-    friction: 0.99,
-    gravity: parseFloat(gravitySelect.value),
-    thrust: false
-};
-
 function updateShip() {
     ship.horizontalSpeed *= ship.friction;
     ship.verticalSpeed *= ship.friction;
